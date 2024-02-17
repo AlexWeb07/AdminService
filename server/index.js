@@ -1,5 +1,5 @@
 const express= require('express');
-var cors= require('cors');
+const cors= require('cors');
 // cors compaitibility
 
 const connectDb=require('./db/ConnectDB')
@@ -10,6 +10,13 @@ connectDb(MongoUri);
 
 // app
 const app=express();
+
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // Enable credentials (if needed)
+    optionsSuccessStatus: 204, // Respond with 204 No Content for preflight requests
+  }));
 
 
 // middlewares
@@ -26,15 +33,6 @@ app.get("/",(req,res)=>{
     res.send("<h1>Hello world</h1>")
 })
  
-app.use(
-    cors({
-      origin: "*",
-      methods: "POST ,PUT ,GET ,DELETE,HEAD",
-      credentials: true,
-    })
-  );
-app.options('*', cors());
-
 
 app.listen(4000,console.log("Server successfully running on port 4000"))
 
