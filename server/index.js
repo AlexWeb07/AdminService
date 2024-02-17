@@ -12,7 +12,7 @@ connectDb(MongoUri);
 const app=express();
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'http://localhost:5173' || `https://admin-service-frontend.vercel.app`,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Enable credentials (if needed)
     optionsSuccessStatus: 204, // Respond with 204 No Content for preflight requests
