@@ -1,5 +1,5 @@
 const express= require('express');
-const cors= require('cors');
+var cors= require('cors');
 // cors compaitibility
 
 const connectDb=require('./db/ConnectDB')
@@ -10,7 +10,13 @@ connectDb(MongoUri);
 
 // app
 const app=express();
-app.use(cors());
+app.use(
+    cors({
+      origin: "*",
+      methods: "POST ,PUT ,GET ,DELETE,HEAD",
+      credentials: true,
+    })
+  );
 
 // middlewares
 app.use(express.json({limit:"10mb"}))
