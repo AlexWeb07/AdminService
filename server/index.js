@@ -33,6 +33,8 @@ app.use(
       credentials: true,
     })
   );
+app.options('*', cors());
+
 
 app.listen(4000,console.log("Server successfully running on port 4000"))
 
