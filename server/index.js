@@ -10,13 +10,7 @@ connectDb(MongoUri);
 
 // app
 const app=express();
-app.use(
-    cors({
-      origin: "*",
-      methods: "POST ,PUT ,GET ,DELETE,HEAD",
-      credentials: true,
-    })
-  );
+
 
 // middlewares
 app.use(express.json({limit:"10mb"}))
@@ -32,6 +26,13 @@ app.get("/",(req,res)=>{
     res.send("<h1>Hello world</h1>")
 })
  
-
+app.use(
+    cors({
+      origin: "*",
+      methods: "POST ,PUT ,GET ,DELETE,HEAD",
+      credentials: true,
+    })
+  );
 
 app.listen(4000,console.log("Server successfully running on port 4000"))
+
