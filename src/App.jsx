@@ -13,8 +13,8 @@ import AdminPage from './routes/AdminPage'
 function App() {
   return (
     <BrowserRouter>
-    {/* <Admin>
-      <User> */}
+    {/* <Admin> */}
+      <User>
         <Product>
             <Navbar/>
             <Routes>
@@ -25,8 +25,8 @@ function App() {
               <Route path='/admin' element={<AdminPage/>}/>
             </Routes>
         </Product>
-      {/* </User>
-    </Admin> */}
+      </User>
+    {/* </Admin> */}
     </BrowserRouter>
   )
 }

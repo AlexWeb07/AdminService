@@ -19,6 +19,7 @@ router.post('/createAdmin',async (req,res)=>{
         }
         catch(err){
             res.json({msg:'Something went wrong...',error:err})
+            console.log(err)
         }
     }
     else{
@@ -35,8 +36,11 @@ router.post('/adminLogin',async (req,res)=>{
             if(checkPass){
                 login=true;
                 const data={
-                    name:isAdmin.name,
-                    email:isAdmin.email
+                    admin:{
+                        id:isAdmin._id,
+                        name:isAdmin.name,
+                        email:isAdmin.email
+                    }
                 }
                 const authToken=jwt.sign(data,process.env.JWT_SECRET)
                 res.send({msg:"Logged in successfully...",authToken,login})
@@ -46,6 +50,7 @@ router.post('/adminLogin',async (req,res)=>{
             }
         }catch(error){
             res.send({msg:'Something went wrong!! try again...'})
+            console.log(error)
         }
     }
     else{

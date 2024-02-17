@@ -1,8 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function AdminLogin() {
   const navigate=useNavigate()
+
+  useEffect(()=>{
+    if(localStorage.getItem("adminAuthToken"))
+      navigate('/admin')
+    })
+
   const [user, setUser] = useState({ email: "", password: "" })
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value })
@@ -17,14 +23,14 @@ function AdminLogin() {
       }
   });
   const json=await res.json();
-  // console.log(json.msg)
   if(json.login){
-    localStorage.setItem("adminAuthToken",json.authtoken)
-    console.log(json.msg)
+    localStorage.setItem("adminAuthToken",json.authToken)
+    localStorage.removeItem("userAuthToken")
+    alert(json.msg)
     navigate("/admin")
   }
   else{
-    console.log(json.msg)
+    alert(json.msg)
   }
 }
   return (
@@ -36,7 +42,7 @@ function AdminLogin() {
           <input type="email" id='email' name='email' placeholder="Admin Email" className=" placeholder-teal-600 font-semibold outline-none border-slate-600 border w-[calc(100%-6rem)] pl-3 rounded h-10 bg-transparent" onChange={handleChange}/>
           <input type="password" className=" placeholder-teal-600 font-semibold outline-none border-slate-600 border w-[calc(100%-6rem)] pl-3 rounded h-10 bg-transparent" id="pass" placeholder="Password" name='password' onChange={handleChange}/>
           
-        <button type="submit" className="w-40 h-10 bg-slate-500 text-slate-50 rounded-lg outline-none">Submit</button>
+        <button type="submit" className="w-40 h-10 bg-slate-500 text-slate-50 rounded-xl outline-none">Submit</button>
       </form>
     </div>
   </div>

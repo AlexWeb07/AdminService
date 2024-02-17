@@ -14,11 +14,11 @@ function MyModal(props) {
   return (
     <>
      {open && <div className='w-full h-full bg-slate-950/70 z-10 absolute top-0 left-0'></div>}
-    <dialog ref={ref} className={`${props.bg} ${props.width} h-[80%]`}>
+    <dialog ref={ref} className={`${props.bg} ${props.width} ${props.height || "h-[80%]"} rounded-xl`}>
     <button onClick={()=>{
         setOpen(false)
         props.setOpen(false)
-    }} className="self-start m-2 font-semibold">✕</button>
+    }} className="self-start m-2 font-semibold text-slate-400">✕</button>
         {props.children}
     </dialog>
       

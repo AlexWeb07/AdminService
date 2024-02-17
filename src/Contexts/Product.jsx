@@ -3,56 +3,77 @@ import ProductContext from './ProductContext';
 
 function Product(props) {
 
-    let headersList = {"Content-Type": "application/json"}
-
     const allDemoProducts=async()=>{
         let response = await fetch("http://localhost:4000/api/product/getAllDemoProducts", { 
-            method: "GET"
+            method: "GET",
+            headers:{"Content-Type": "application/json",
+            "adminAuthToken":localStorage.getItem("adminAuthToken"),
+            "userAuthToken":localStorage.getItem("userAuthToken")}
         })
         const data= await response.json();
+        data.status=response.status;
         return data;
     }
-    const allDemoProductsByUserid=async(userId)=>{
-        let response = await fetch(`http://localhost:4000/api/product/getAllDemoProducts/${userId}`, { 
-            method: "GET"
+    const allDemoProductsById=async()=>{
+        let response = await fetch(`http://localhost:4000/api/product/getAllDemoProductsById`, { 
+            method: "GET",
+            headers:{"Content-Type": "application/json",
+            "adminAuthToken":localStorage.getItem("adminAuthToken"),
+            "userAuthToken":localStorage.getItem("userAuthToken")}
         })
         const data= await response.json();
+        data.status=response.status;
         return data;
     }
     const allProducts=async()=>{
         let response = await fetch("http://localhost:4000/api/product/getAllProducts", { 
-            method: "GET"
+            method: "GET",
+            headers:{"Content-Type": "application/json",
+            "adminAuthToken":localStorage.getItem("adminAuthToken"),
+            "userAuthToken":localStorage.getItem("userAuthToken")}
         })
         const data= await response.json();
+        data.status=response.status;
         return data;
     }
     const addDemoProduct=async (title,desc,img,price,mrp,userId)=>{
         let response = await fetch("http://localhost:4000/api/product/addDemoProduct", { 
           method: "POST",
           body: JSON.stringify({title,desc,img,price,mrp,userId}),
-          headers: headersList
+          headers: {"Content-Type": "application/json",
+            "adminAuthToken":localStorage.getItem("adminAuthToken"),
+            "userAuthToken":localStorage.getItem("userAuthToken")}
         });
         let data = await response.json();
+        data.status=response.status;
         return data;  
            
 
     }
     const acceptProduct=async (id)=>{
         let response = await fetch(`http://localhost:4000/api/product/accept/${id}`, { 
-          method: "PUT"
+          method: "PUT",
+          headers:{"Content-Type": "application/json",
+            "adminAuthToken":localStorage.getItem("adminAuthToken"),
+            "userAuthToken":localStorage.getItem("userAuthToken")}
         });
         let data = await response.json();
+        data.status=response.status;
         return data;     
     }
     const rejectProduct=async (id)=>{
         let response = await fetch(`http://localhost:4000/api/product/reject/${id}`, { 
           method: "PUT",
+          headers:{"Content-Type": "application/json",
+            "adminAuthToken":localStorage.getItem("adminAuthToken"),
+            "userAuthToken":localStorage.getItem("userAuthToken")}
         });
         let data = await response.json();
+        data.status=response.status;
         return data;    
     }
   return (
-    <ProductContext.Provider value={{allDemoProductsByUserid,allProducts,allDemoProducts,addDemoProduct,acceptProduct,rejectProduct}}>
+    <ProductContext.Provider value={{allDemoProductsById,allProducts,allDemoProducts,addDemoProduct,acceptProduct,rejectProduct}}>
       {props.children}
     </ProductContext.Provider>
   )
