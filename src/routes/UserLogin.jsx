@@ -13,7 +13,7 @@ function UserLogin() {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:4000/api/user/userLogin", { 
+    const res = await fetch(`https://admin-service69.vercel.app/api/user/userLogin`, { 
         method: "POST",
         body: JSON.stringify({email:user.email,password:user.password}),
         headers: {

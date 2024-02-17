@@ -2,9 +2,10 @@ import React from 'react'
 import UserContext from './UserContext';
 
 function User(props) {
+    const host="https://admin-service69.vercel.app";
     const createUser=async (name,email,password)=>{
        let bodyContent = JSON.stringify({name,email,password});
-       let response = await fetch("http://localhost:4000/api/user/createUser", { 
+       let response = await fetch(`${host}/api/user/createUser`, { 
          method: "POST",
          body: bodyContent,
          headers: {"Content-Type": "application/json",
@@ -17,7 +18,7 @@ function User(props) {
     }
     const userLogin=async (email,password)=>{
       let bodyContent = JSON.stringify({email,password});
-      let response = await fetch("http://localhost:4000/api/user/userLogin", { 
+      let response = await fetch("${host}/api/user/userLogin", { 
         method: "POST",
         body: bodyContent,
         headers: {"Content-Type": "application/json",
@@ -29,7 +30,7 @@ function User(props) {
       return data;  
     }
     const allUser= async ()=>{
-      const res= await fetch(`http://localhost:4000/api/user/getAllUser`,{
+      const res= await fetch(`${host}/api/user/getAllUser`,{
         method:"GET",
         headers: {"Content-Type": "application/json",
             "adminAuthToken":localStorage.getItem("adminAuthToken"),
@@ -41,7 +42,7 @@ function User(props) {
     }
     const updateUser=async (name,email,password,id)=>{
       let bodyContent = JSON.stringify({name,email,password});
-      let response = await fetch(`http://localhost:4000/api/user/updateUser/${id}`, { 
+      let response = await fetch(`${host}/api/user/updateUser/${id}`, { 
         method: "PUT",
         body: bodyContent,
         headers: {"Content-Type": "application/json",
@@ -53,7 +54,7 @@ function User(props) {
       return data;       
    }
    const deleteUser=async(id)=>{
-    let response = await fetch(`http://localhost:4000/api/user/deleteUser/${id}`, { 
+    let response = await fetch(`${host}/api/user/deleteUser/${id}`, { 
         method: "DELETE",
         headers: {"Content-Type": "application/json",
             "adminAuthToken":localStorage.getItem("adminAuthToken"),

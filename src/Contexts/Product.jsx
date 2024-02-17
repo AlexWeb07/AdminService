@@ -2,9 +2,9 @@ import React from 'react'
 import ProductContext from './ProductContext';
 
 function Product(props) {
-
+    const host="https://admin-service69.vercel.app";
     const allDemoProducts=async()=>{
-        let response = await fetch("http://localhost:4000/api/product/getAllDemoProducts", { 
+        let response = await fetch(`${host}/api/product/getAllDemoProducts`, { 
             method: "GET",
             headers:{"Content-Type": "application/json",
             "adminAuthToken":localStorage.getItem("adminAuthToken"),
@@ -15,7 +15,7 @@ function Product(props) {
         return data;
     }
     const allDemoProductsById=async()=>{
-        let response = await fetch(`http://localhost:4000/api/product/getAllDemoProductsById`, { 
+        let response = await fetch(`${host}/api/product/getAllDemoProductsById`, { 
             method: "GET",
             headers:{"Content-Type": "application/json",
             "adminAuthToken":localStorage.getItem("adminAuthToken"),
@@ -26,7 +26,7 @@ function Product(props) {
         return data;
     }
     const allProducts=async()=>{
-        let response = await fetch("http://localhost:4000/api/product/getAllProducts", { 
+        let response = await fetch(`${host}/api/product/getAllProducts`, { 
             method: "GET",
             headers:{"Content-Type": "application/json",
             "adminAuthToken":localStorage.getItem("adminAuthToken"),
@@ -37,7 +37,7 @@ function Product(props) {
         return data;
     }
     const addDemoProduct=async (title,desc,img,price,mrp,userId)=>{
-        let response = await fetch("http://localhost:4000/api/product/addDemoProduct", { 
+        let response = await fetch(`${host}/api/product/addDemoProduct`, { 
           method: "POST",
           body: JSON.stringify({title,desc,img,price,mrp,userId}),
           headers: {"Content-Type": "application/json",
@@ -51,7 +51,7 @@ function Product(props) {
 
     }
     const acceptProduct=async (id)=>{
-        let response = await fetch(`http://localhost:4000/api/product/accept/${id}`, { 
+        let response = await fetch(`${host}/api/product/accept/${id}`, { 
           method: "PUT",
           headers:{"Content-Type": "application/json",
             "adminAuthToken":localStorage.getItem("adminAuthToken"),
@@ -62,7 +62,7 @@ function Product(props) {
         return data;     
     }
     const rejectProduct=async (id)=>{
-        let response = await fetch(`http://localhost:4000/api/product/reject/${id}`, { 
+        let response = await fetch(`${host}/api/product/reject/${id}`, { 
           method: "PUT",
           headers:{"Content-Type": "application/json",
             "adminAuthToken":localStorage.getItem("adminAuthToken"),
