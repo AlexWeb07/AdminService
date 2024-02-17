@@ -36,10 +36,10 @@ function Product(props) {
         data.status=response.status;
         return data;
     }
-    const addDemoProduct=async (title,desc,img,price,mrp,userId)=>{
+    const addDemoProduct=async (title,desc,img,mrp,price)=>{
         let response = await fetch(`${host}/api/product/addDemoProduct`, { 
           method: "POST",
-          body: JSON.stringify({title,desc,img,price,mrp,userId}),
+          body: JSON.stringify({title,desc,img,mrp,price}),
           headers: {"Content-Type": "application/json",
             "adminAuthToken":localStorage.getItem("adminAuthToken"),
             "userAuthToken":localStorage.getItem("userAuthToken")}

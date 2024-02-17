@@ -245,10 +245,10 @@ function AdminPage() {
                     <img src={p.img} alt="" className='w-20 h-16' />
                   </td>
                   <td className="px-6 py-3 text-center">
-                    {p.mrp}
+                    {p.price}
                   </td>
                   <td className="px-6 py-3 text-center">
-                    {p.price}
+                    {p.mrp}
                   </td>
                   <td className="text-center w-44 border-l">
                     {p.accepted!=99?p.accepted==1?<h2 className='text-blue-400'>Accepted</h2>:<h2 className='text-red-400'>Rejected</h2>
@@ -299,10 +299,10 @@ function AdminPage() {
                     <img src={p.img} alt="" className='w-20 h-16' />
                   </td>
                   <td className="px-6 py-3 text-center">
-                    ₹ {p.mrp}
+                    ₹ {p.price}
                   </td>
                   <td className="px-6 py-3 text-center">
-                  ₹ {p.price}
+                  ₹ {p.mrp}
                   </td>
               </tr>})}
           </tbody>
