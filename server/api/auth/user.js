@@ -85,7 +85,7 @@ router.put('/updateUser/:id',fetchAdmin,async(req,res)=>{
             var newUser;
             if(password!=""){
                 const secPassword=await bcrypt.hash(password,10);
-                newUser=await User.findByIdAndUpdate(id,{$set:{name,email,secPassword}})
+                newUser=await User.findByIdAndUpdate(id,{$set:{name,email,password:secPassword}})
             }
             else newUser=await User.findByIdAndUpdate(id,{$set:{name,email}});
              
